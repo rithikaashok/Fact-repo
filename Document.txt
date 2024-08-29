@@ -1,0 +1,93 @@
+TASK-1
+
+create new repo
+clone the repo locally
+git clone https://github.com/rithikaashok/Fact-repo.git
+cd Fact-repo
+notepad Factorial.java
+
+public class Factorial {
+    public static void main(String[] args) {
+        int num = 5;
+        long factorial = 1;
+        for(int i = 1; i <= num; ++i) {
+            factorial *= i;
+        }
+        System.out.println("Factorial of " + num + " = " + factorial);
+    }
+}
+
+git add .
+git status
+git commit -m "My Factorial program"
+git push -u origin main
+
+then in Jenkins
+create freestyle project
+in SCM select the git
+enter the url and credentials
+add the branch name
+in build steps 
+javac Factorial.java
+java Factorial
+save and build 
+
+
+TASK-2
+
+Create a new branch
+git branch feature/new-program
+git branch
+git checkout feature/new-program
+git branch
+notepad Calculator.java
+
+public class Calculator {
+    public static void main(String[] args) {
+        double num1 = 20.0;
+        double num2 = 4.0;
+
+        double sum = num1 + num2;
+        System.out.println("Addition: " + num1 + " + " + num2 + " = " + sum);
+
+        double difference = num1 - num2;
+        System.out.println("Subtraction: " + num1 + " - " + num2 + " = " + difference);
+
+        double product = num1 * num2;
+        System.out.println("Multiplication: " + num1 + " * " + num2 + " = " + product);
+
+        double quotient = num1 / num2;
+        System.out.println("Division: " + num1 + " / " + num2 + " = " + quotient);
+    }
+}
+
+
+git add .
+git status
+git commit -m "My Calculator program"
+git push -u origin feature/new-program
+
+in Jenkins
+go to the project created in task 1
+in the SCM edit the branch
+add the branch as */feature/new-program
+in the buid step
+javac Calculator.java
+java Calculator
+save and build
+
+then merge the branch:
+git branch
+git checkout main
+git branch
+git merge feature/new-program
+git push -u origin main
+
+then go to the Jenkins
+in the SCM
+in the branch add */main
+in the build step 
+javac *.java
+java Calculator
+java Factorial
+save and build
